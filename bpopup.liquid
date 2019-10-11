@@ -1,0 +1,177 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+<script>
+jQuery(function() {
+	
+   if (jQuery.cookie("newsletter") != "1") { 
+  		setTimeout(function() { 
+			jQuery("#size-chart-popup").bPopup();
+		}, 3000);
+   }
+  
+  		jQuery(".b-close").click(function() {
+    		jQuery("#size-chart-popup").bPopup().close();
+ 
+                  
+                  
+                  	var date = new Date();
+ 					var minutes = 5;
+ 					date.setTime(date.getTime() + (3 * 3600 * 1000));
+                  
+                  jQuery.cookie("newsletter", "1", { expires: date, path: "/" }); 
+  		});
+  
+        $("#sizechart").click(function(){ 
+            $('#size-chart-popup').bPopup();
+        });
+  		$("#sizechart2").click(function(){ 
+    
+    		$('#size-chart-popup').bPopup();
+          
+    	});
+   		$("#sizechart3").click(function(){  
+   			$('#size-chart-popup').bPopup();
+    	});
+	
+});
+</script>
+
+<div id="size-chart-popup">
+  <a class="b-close">X</a>
+  <div id="size-chart-div">
+  <h1 class="h2 site-header__logo">
+            
+        
+          
+<a href="/"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 339.6 57.6"><defs><style>.a{fill:white;}</style></defs><path class="a" d="M57.2,37.3C53.8,49.4,42.5,57.4,29.3,57.4,13.3,57.5,0,45.2,0,28.8,0,12.7,12.7,0,29.3,0,42,0,53.4,7.5,57.2,20.2L45.8,23.7A16.937,16.937,0,0,0,29.3,10.9c-10,0-16.8,7.8-16.8,17.9,0,9.7,6.7,17.9,16.8,17.9,8.1,0,14.3-5,16.5-12.8Z"></path><path class="a" d="M115.2,0V57.4h-12V31.6H77.4V57.4h-12V0h12V20.5h25.8V0Z"></path><path class="a" d="M166.5,0V11.1H138.1v9.5h21.1V31.7H138.1V46.5h28.4V57.6H126.1V0Z"></path><path class="a" d="M210.1,57.5,196.5,34.2H185.8V57.5h-12V.1H203c9.7,0,17.4,6.7,17.4,17.2,0,7.5-3.6,13.1-11.2,15.8l14.3,24.4ZM185.9,23.4h15.7c3.4,0,7.2-2.1,7.2-6.1,0-3.8-3.5-6.1-7.2-6.1H185.9Z"></path><path class="a" d="M268.5,57.5,254.9,34.2H244.2V57.5h-12V.1h29.2c9.7,0,17.4,6.7,17.4,17.2,0,7.5-3.6,13.1-11.2,15.8L282,57.5ZM244.2,23.4H260c3.4,0,7.2-2.1,7.2-6.1,0-3.8-3.5-6.1-7.2-6.1H244.3V23.4Z"></path><path class="a" d="M339.6.1,319.5,35.8V57.5h-12V35.8L287.4.1h13.5l12.7,23.8L326.3.1h13.3Z"></path></svg></a>
+          
+        
+            
+          </h1>
+    
+     {% form 'customer' %}
+      {{ form.errors | default_errors }}
+ 
+        <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="ENTER EMAIL ADDRESS" name="contact[email]" id="Email" class="input-group-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off" style="width: 100%;text-align: -webkit-center;">
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input type="submit" class="btn" name="subscribe" id="subscribe" value="{{ 'general.newsletter_form.submit' | t }}">
+
+    {% endform %}
+  </div>
+</div>
+<style>
+#size-chart-popup {
+    left: 0 !important;
+    position: fixed !important;
+    z-index: 9999;
+    opacity: 1;
+    background: white;
+    width: 30%;
+    top: 30% !important;
+    background-color: red;
+    display: none;
+    right: 0;
+    margin: 0 auto;
+}
+form#contact_form input#Email {
+    background: #ee1f00;
+    border: none;
+    color: #fff !important;
+    margin-top: 10px;
+  height: 44px;
+      font-size: 12px;
+}  
+  
+  form#contact_form input#Email::placeholder {color: #fff !important;    opacity: 1;}
+  
+  #size-chart-div{
+        padding: 50px;
+  }
+  #size-chart-popup table{
+    font-size: 15px;
+        border: 1px solid black;
+  }
+  #size-chart-popup th, td {
+    padding: 13px;
+      text-align: center;
+  }
+  #size-chart-popup th{
+    font-weight:600;
+  }
+  .first-th{
+      background: black;
+    color: white;
+    border: 1px solid white
+  }
+a.b-close {
+    font-size: 22px;
+    float: right;
+    margin-right: 15px;
+    margin-top: 10px;
+    color: #000;
+  cursor: pointer;
+}
+  a.b-close:hover {color: #000;}  
+
+  form#contact_form input#subscribe {
+    text-align: center;
+    margin: 20px auto 0;
+    float: none;
+    display: inherit;
+    text-decoration: underline;
+    font-size: 13px;
+}
+@media only screen and (max-width: 1024px){
+#size-chart-popup {
+    left: 0 !important;
+    position: fixed !important;
+    z-index: 9999;
+    opacity: 1;
+    background: white;
+    width: 320px;
+    top: 13% !important;
+    background-color: red;
+    display: none;
+    right: 0;
+    margin: 0 auto;
+}  
+  
+  }  
+  
+@media only screen and (max-width: 767px){
+#size-chart-popup {
+    left: 0 !important;
+    position: fixed !important;
+    z-index: 9999;
+    opacity: 1;
+    background: white;
+    width: 320px;
+    top: 20% !important;
+    background-color: red;
+    display: none;
+    right: 0;
+    margin: 0 auto;
+}  
+  
+  }
+  
+
+@media only screen and (max-width: 480px){
+#size-chart-popup {
+    left: 0 !important;
+    position: fixed !important;
+    z-index: 9999;
+    opacity: 1;
+    background: white;
+    width: 300px;
+    top: 20% !important;
+    background-color: red;
+    display: none;
+    right: 0;
+    margin: 0 auto;
+}
+  
+  }
+  
+  
+</style>
